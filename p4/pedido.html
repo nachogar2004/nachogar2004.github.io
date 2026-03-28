@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Galeria Atelier - Pedido</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="header-wrap">
+        <h1 class="site-title">Galeria Atelier</h1>
+        <nav aria-label="Principal">
+          <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+            <li><a href="pedido.html">Pedido</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Formulario de pedido</h2>
+        <p>
+          Completa tus datos para solicitar uno de los cuadros del catalogo o un
+          encargo personalizado. Los campos obligatorios permiten gestionar el pedido.
+        </p>
+
+        <form action="#" method="post">
+          <div class="form-grid">
+            <div>
+              <label for="nombre">Nombre completo *</label>
+              <input id="nombre" name="nombre" type="text" required />
+            </div>
+
+            <div>
+              <label for="email">Correo electronico *</label>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div>
+              <label for="telefono">Telefono</label>
+              <input id="telefono" name="telefono" type="tel" />
+            </div>
+
+            <div>
+              <label for="direccion">Direccion de entrega *</label>
+              <input id="direccion" name="direccion" type="text" required />
+            </div>
+
+            <div>
+              <label for="cuadro">Cuadro seleccionado</label>
+              <select id="cuadro" name="cuadro">
+                <option value="luz-de-otono">Luz de Otono</option>
+                <option value="ciudad-azul">Ciudad Azul</option>
+                <option value="retrato-en-calma">Retrato en Calma</option>
+                <option value="horizonte-rojo">Horizonte Rojo</option>
+                <option value="encargo">Encargo personalizado</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="tamano">Tamano preferido</label>
+              <select id="tamano" name="tamano">
+                <option value="pequeno">Pequeno (40 x 30 cm)</option>
+                <option value="mediano">Mediano (70 x 50 cm)</option>
+                <option value="grande">Grande (100 x 70 cm)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="comentarios">Detalles del pedido</label>
+            <textarea
+              id="comentarios"
+              name="comentarios"
+              placeholder="Ejemplo: quiero tonos calidos y marco de madera natural"
+            ></textarea>
+          </div>
+
+          <div class="checkbox-inline">
+            <input id="legal" name="legal" type="checkbox" required />
+            <label for="legal">Acepto la politica de privacidad y condiciones de pedido *</label>
+          </div>
+
+          <button type="submit">Enviar pedido</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>Practica 4 - PAT | Pagina interior 3 de 3</p>
+    </footer>
+  </body>
+</html>
