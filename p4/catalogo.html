@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeria Atelier - Catalogo</title>
+    <title>Galeria Space - Catalogo</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <header>
       <div class="header-wrap">
-        <h1 class="site-title">Galeria Atelier</h1>
+        <h1 class="site-title">Galeria Space</h1>
         <nav aria-label="Principal">
           <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="multimedia.html">Multimedia</a></li>
             <li><a href="pedido.html">Pedido</a></li>
           </ul>
@@ -23,77 +23,83 @@
 
     <main>
       <section class="card">
-        <h2>Catalogo de cuadros</h2>
+        <h2>Nuestras Obras Maestras</h2>
         <p>
-          Esta tabla resume una seleccion de obras disponibles para pedido.
-          Incluye tecnica, tamano y estado de disponibilidad.
+          Presentamos una colección exclusiva de obras maestras de dos gigantes del arte mundial. Las obras de Claude Monet capturan la esencia de la luz y el color en su máxima expresión, mientras que las creaciones de Jean-Michel Basquiat fusionan primitivismo, abstracción y crítica social. Cada pieza es una inversión en arte que trasciende generaciones.
         </p>
 
-        <table>
-          <caption>
-            Cuadros disponibles (temporada 2026)
-          </caption>
-          <thead>
-            <tr>
-              <th>Cuadro</th>
-              <th>Tecnica</th>
-              <th>Tamano</th>
-              <th>Precio / Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Luz de Otono</td>
-              <td>Oleo sobre lienzo</td>
-              <td>70 x 50 cm</td>
-              <td>260 EUR - Disponible</td>
-            </tr>
-            <tr>
-              <td>Ciudad Azul</td>
-              <td>Acuarela</td>
-              <td>50 x 40 cm</td>
-              <td>180 EUR - Disponible</td>
-            </tr>
-            <tr>
-              <td>Retrato en Calma</td>
-              <td>Tecnica mixta</td>
-              <td>60 x 60 cm</td>
-              <td>340 EUR - Bajo pedido</td>
-            </tr>
-            <tr>
-              <td>Horizonte Rojo</td>
-              <td>Oleo sobre tabla</td>
-              <td>80 x 60 cm</td>
-              <td>420 EUR - Disponible</td>
-            </tr>
-            <tr>
-              <td>Jardin Interior</td>
-              <td>Acrilico</td>
-              <td>100 x 70 cm</td>
-              <td>510 EUR - Ultima unidad</td>
-            </tr>
-            <tr>
-              <td>Linea de Mar</td>
-              <td>Grabado y tinta</td>
-              <td>45 x 30 cm</td>
-              <td>150 EUR - Disponible</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="art-grid">
+          <article class="art-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/5/59/Monet_-_Impression%2C_Sunrise.jpg"
+              alt="Impression, soleil levant de Claude Monet"
+            />
+            <div class="art-overlay">
+              <h3>Impression, soleil levant</h3>
+              <p>Claude Monet · 1.200.000 EUR</p>
+              <button class="add-to-cart" type="button" data-id="monet-impression" data-artist="Claude Monet" data-title="Impression, soleil levant" data-price="1200000">
+                Añadir al carrito
+              </button>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/cb/Claude_Monet_Nympheas_1915_Musee_Marmottan_Paris.jpg"
+              alt="Nympheas de Claude Monet"
+            />
+            <div class="art-overlay">
+              <h3>Nympheas</h3>
+              <p>Claude Monet · 2.000.000 EUR</p>
+              <button class="add-to-cart" type="button" data-id="monet-nympheas" data-artist="Claude Monet" data-title="Nympheas" data-price="2000000">
+                Añadir al carrito
+              </button>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/f/f6/Untitled1982Basquiat.jpg"
+              alt="Untitled (Skull) de Jean-Michel Basquiat"
+            />
+            <div class="art-overlay">
+              <h3>Untitled (Skull)</h3>
+              <p>Jean-Michel Basquiat · 6.500.000 EUR</p>
+              <button class="add-to-cart" type="button" data-id="basquiat-skull" data-artist="Jean-Michel Basquiat" data-title="Untitled (Skull)" data-price="6500000">
+                Añadir al carrito
+              </button>
+            </div>
+          </article>
+
+          <article class="art-card">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/7/78/Boy-and-Dog-in-Johnnypump-1982.jpg"
+              alt="Boy and Dog in a Johnnypump de Jean-Michel Basquiat"
+            />
+            <div class="art-overlay">
+              <h3>Boy and Dog in a Johnnypump</h3>
+              <p>Jean-Michel Basquiat · 7.000.000 EUR</p>
+              <button class="add-to-cart" type="button" data-id="basquiat-johnnypump" data-artist="Jean-Michel Basquiat" data-title="Boy and Dog in a Johnnypump" data-price="7000000">
+                Añadir al carrito
+              </button>
+            </div>
+          </article>
+        </div>
+        <p class="cart-status" id="cart-status">Carrito: 0 cuadros seleccionados.</p>
+        <a class="button" href="pedido.html">Ir a pedido</a>
       </section>
 
       <section class="card">
-        <h3>Consejos para elegir tu cuadro</h3>
+        <h3>Elige tu Obra de Arte</h3>
         <p>
-          Revisa el tamano del lienzo y la tecnica para adaptarlo al espacio donde
-          lo vas a colocar. Si quieres una variacion de color, puedes pedirla en el
-          formulario.
+          Tanto si buscas la serenidad de los Waterlilies de Monet como la energía cruda del arte urbano de Basquiat, cada obra cuenta una historia única. Añade tus piezas favoritas al carrito y completa tu pedido de forma segura. Nuestro equipo está disponible para consultas y asesoramiento personalizado.
         </p>
       </section>
     </main>
 
     <footer>
-      <p>Practica 4 - PAT | Pagina interior 1 de 3</p>
+      <p>&copy; 2024 Galería Space | Especialistas en Monet y Basquiat</p>
     </footer>
+    <script src="js/carrito.js"></script>
   </body>
 </html>

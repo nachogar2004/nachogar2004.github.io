@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Galeria Atelier - Pedido</title>
+    <title>Galeria Space - Pedido</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <header>
       <div class="header-wrap">
-        <h1 class="site-title">Galeria Atelier</h1>
+        <h1 class="site-title">Galeria Space</h1>
         <nav aria-label="Principal">
           <ul>
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Catalogo</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
             <li><a href="multimedia.html">Multimedia</a></li>
             <li><a href="pedido.html">Pedido</a></li>
           </ul>
@@ -23,10 +23,32 @@
 
     <main>
       <section class="card">
-        <h2>Formulario de pedido</h2>
+        <h2>Tu Selección</h2>
+        <p>Estas son las obras maestras que has elegido. Revisa tu selección y completa el formulario para proceder con la compra.</p>
+        <table id="cart-table">
+          <thead>
+            <tr>
+              <th>Artista</th>
+              <th>Cuadro</th>
+              <th>Cantidad</th>
+              <th>Precio original</th>
+              <th>Subtotal</th>
+              <th>Accion</th>
+            </tr>
+          </thead>
+          <tbody id="cart-items-body">
+            <tr>
+              <td colspan="6">Tu carrito está vacío. Ve al catálogo para añadir cuadros.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="cart-status" id="cart-total">Total: 0 EUR</p>
+      </section>
+
+      <section class="card">
+        <h2>Completa tu Pedido</h2>
         <p>
-          Completa tus datos para solicitar uno de los cuadros del catalogo o un
-          encargo personalizado. Los campos obligatorios permiten gestionar el pedido.
+          Para proceder con la adquisición de tu obra de arte, por favor completa este formulario con tus datos de contacto. Nuestro equipo se pondrá en contacto contigo para confirmar tu pedido, discutir los detalles de envío y autenticación, así como responder cualquier pregunta que tengas sobre la obra seleccionada.
         </p>
 
         <form action="#" method="post">
@@ -37,7 +59,7 @@
             </div>
 
             <div>
-              <label for="email">Correo electronico *</label>
+              <label for="email">Correo electrónico *</label>
               <input id="email" name="email" type="email" required />
             </div>
 
@@ -47,43 +69,24 @@
             </div>
 
             <div>
-              <label for="direccion">Direccion de entrega *</label>
+              <label for="direccion">Dirección de entrega *</label>
               <input id="direccion" name="direccion" type="text" required />
             </div>
 
-            <div>
-              <label for="cuadro">Cuadro seleccionado</label>
-              <select id="cuadro" name="cuadro">
-                <option value="luz-de-otono">Luz de Otono</option>
-                <option value="ciudad-azul">Ciudad Azul</option>
-                <option value="retrato-en-calma">Retrato en Calma</option>
-                <option value="horizonte-rojo">Horizonte Rojo</option>
-                <option value="encargo">Encargo personalizado</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="tamano">Tamano preferido</label>
-              <select id="tamano" name="tamano">
-                <option value="pequeno">Pequeno (40 x 30 cm)</option>
-                <option value="mediano">Mediano (70 x 50 cm)</option>
-                <option value="grande">Grande (100 x 70 cm)</option>
-              </select>
-            </div>
           </div>
 
           <div>
-            <label for="comentarios">Detalles del pedido</label>
+            <label for="comentarios">Notas Especiales</label>
             <textarea
               id="comentarios"
               name="comentarios"
-              placeholder="Ejemplo: quiero tonos calidos y marco de madera natural"
+              placeholder="Ejemplo: preferencias de marco, certificado de autenticidad, instrucciones de entrega especiales"
             ></textarea>
           </div>
 
           <div class="checkbox-inline">
             <input id="legal" name="legal" type="checkbox" required />
-            <label for="legal">Acepto la politica de privacidad y condiciones de pedido *</label>
+            <label for="legal">Acepto los términos de compra y la política de privacidad de Galería Space *</label>
           </div>
 
           <button type="submit">Enviar pedido</button>
@@ -92,7 +95,8 @@
     </main>
 
     <footer>
-      <p>Practica 4 - PAT | Pagina interior 3 de 3</p>
+      <p>&copy; 2024 Galería Space | Especialistas en Monet y Basquiat</p>
     </footer>
+    <script src="js/carrito.js"></script>
   </body>
 </html>
