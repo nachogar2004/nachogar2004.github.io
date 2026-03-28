@@ -9,7 +9,7 @@
   <body>
     <header>
       <div class="header-wrap">
-        <h1 class="site-title">Galeria Space</h1>
+        <h1 class="site-title">Galería Space</h1>
         <nav aria-label="Principal">
           <ul>
             <li><a href="index.html">Inicio</a></li>
@@ -24,31 +24,17 @@
     <main>
       <section class="card">
         <h2>Tu Selección</h2>
-        <p>Estas son las obras maestras que has elegido. Revisa tu selección y completa el formulario para proceder con la compra.</p>
-        <table id="cart-table">
-          <thead>
-            <tr>
-              <th>Artista</th>
-              <th>Cuadro</th>
-              <th>Cantidad</th>
-              <th>Precio original</th>
-              <th>Subtotal</th>
-              <th>Accion</th>
-            </tr>
-          </thead>
-          <tbody id="cart-items-body">
-            <tr>
-              <td colspan="6">Tu carrito está vacío. Ve al catálogo para añadir cuadros.</td>
-            </tr>
-          </tbody>
-        </table>
+        <p>Estas son las obras que has elegido y el precio total de tu pedido. Revisa tu selección y completa el formulario para proceder con la compra.</p>
+        <div id="cart-items-list" class="cart-list">
+          <p class="cart-empty">Tu carrito está vacío. Ve al catálogo para añadir cuadros.</p>
+        </div>
         <p class="cart-status" id="cart-total">Total: 0 EUR</p>
       </section>
 
       <section class="card">
         <h2>Completa tu Pedido</h2>
         <p>
-          Para proceder con la adquisición de tu obra de arte, por favor completa este formulario con tus datos de contacto. Nuestro equipo se pondrá en contacto contigo para confirmar tu pedido, discutir los detalles de envío y autenticación, así como responder cualquier pregunta que tengas sobre la obra seleccionada.
+          Para proceder con la adquisición de tu pedido, por favor completa este formulario con tus datos de contacto. Nuestro equipo se pondrá en contacto contigo para confirmar tu pedido, discutir los detalles de envío y autenticación, así como responder cualquier pregunta que tengas sobre las obras seleccionadas.
         </p>
 
         <form action="#" method="post">
@@ -64,7 +50,7 @@
             </div>
 
             <div>
-              <label for="telefono">Telefono</label>
+              <label for="telefono">Teléfono</label>
               <input id="telefono" name="telefono" type="tel" />
             </div>
 
@@ -95,7 +81,7 @@
     </main>
 
     <footer>
-      <p>&copy; 2024 Galería Space | Especialistas en Monet y Basquiat</p>
+      <p>&copy; 2026 Galería Space | Especialistas en Claude Monet y Jean-Michel Basquiat</p>
     </footer>
     <script src="js/carrito.js"></script>
   </body>

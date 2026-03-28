@@ -1,17 +1,17 @@
 (function () {
-  const STORAGE_KEY = "space-cart";
+  const CLAVE_CARRITO = "space-cart";
 
-  function getCart() {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
+  function obtenerCarrito() {
+    const datosBrutos = localStorage.getItem(CLAVE_CARRITO);
+    if (!datosBrutos) {
       return [];
     }
     try {
-      const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) {
+      const carritoParseado = JSON.parse(datosBrutos);
+      if (!Array.isArray(carritoParseado)) {
         return [];
       }
-      return parsed.map(function (item) {
+      return carritoParseado.map(function (item) {
         return {
           id: item.id,
           artist: item.artist,
@@ -25,35 +25,35 @@
     }
   }
 
-  function saveCart(cart) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+  function guardarCarrito(carrito) {
+    localStorage.setItem(CLAVE_CARRITO, JSON.stringify(carrito));
   }
 
-  function formatPrice(value) {
-    return Number(value).toLocaleString("es-ES") + " EUR";
+  function formatearPrecio(valor) {
+    return Number(valor).toLocaleString("es-ES") + " EUR";
   }
 
-  function updateCatalogStatus() {
-    const status = document.getElementById("cart-status");
-    if (!status) {
+  function actualizarEstadoCatalogo() {
+    const estado = document.getElementById("cart-status");
+    if (!estado) {
       return;
     }
-    const totalItems = getCart().reduce(function (sum, item) {
-      return sum + item.quantity;
+    const totalElementos = obtenerCarrito().reduce(function (suma, item) {
+      return suma + item.quantity;
     }, 0);
-    status.textContent = "Carrito: " + totalItems + " cuadros seleccionados.";
+    estado.textContent = "Carrito: " + totalElementos + " cuadros seleccionados.";
   }
 
-  function addToCart(item) {
-    const cart = getCart();
-    const existing = cart.find(function (entry) {
-      return entry.id === item.id;
+  function agregarAlCarrito(item) {
+    const carrito = obtenerCarrito();
+    const existente = carrito.find(function (entrada) {
+      return entrada.id === item.id;
     });
 
-    if (existing) {
+    if (existente) {
       return false;
     } else {
-      cart.push({
+      carrito.push({
         id: item.id,
         artist: item.artist,
         title: item.title,
@@ -62,102 +62,100 @@
       });
     }
 
-    saveCart(cart);
-    updateCatalogStatus();
-    refreshCatalogButtons();
+    guardarCarrito(carrito);
+    actualizarEstadoCatalogo();
+    actualizarBotonesCatalogo();
     return true;
   }
 
-  function refreshCatalogButtons() {
-    const cart = getCart();
-    const ids = cart.map(function (item) {
+  function actualizarBotonesCatalogo() {
+    const carrito = obtenerCarrito();
+    const ids = carrito.map(function (item) {
       return item.id;
     });
 
-    document.querySelectorAll(".add-to-cart").forEach(function (button) {
-      const alreadyAdded = ids.includes(button.dataset.id);
-      button.disabled = alreadyAdded;
-      button.textContent = alreadyAdded ? "Añadido" : "Añadir al carrito";
+    document.querySelectorAll(".add-to-cart").forEach(function (boton) {
+      const yaAnadido = ids.includes(boton.dataset.id);
+      boton.disabled = yaAnadido;
+      boton.textContent = yaAnadido ? "Añadido" : "Añadir al carrito";
     });
   }
 
-  function setupCatalogActions() {
-    const buttons = document.querySelectorAll(".add-to-cart");
-    if (!buttons.length) {
+  function configurarAccionesCatalogo() {
+    const botones = document.querySelectorAll(".add-to-cart");
+    if (!botones.length) {
       return;
     }
 
-    buttons.forEach(function (button) {
-      button.addEventListener("click", function () {
-        const wasAdded = addToCart({
-          id: button.dataset.id,
-          artist: button.dataset.artist,
-          title: button.dataset.title,
-          price: Number(button.dataset.price),
+    botones.forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        const seAnadio = agregarAlCarrito({
+          id: boton.dataset.id,
+          artist: boton.dataset.artist,
+          title: boton.dataset.title,
+          price: Number(boton.dataset.price),
         });
-        if (!wasAdded) {
-          button.disabled = true;
-          button.textContent = "Añadido";
+        if (!seAnadio) {
+          boton.disabled = true;
+          boton.textContent = "Añadido";
         }
       });
     });
 
-    updateCatalogStatus();
-    refreshCatalogButtons();
+    actualizarEstadoCatalogo();
+    actualizarBotonesCatalogo();
   }
 
-  function removeFromCart(id) {
-    const updated = getCart().filter(function (item) {
+  function quitarDelCarrito(id) {
+    const carritoActualizado = obtenerCarrito().filter(function (item) {
       return item.id !== id;
     });
-    saveCart(updated);
-    renderOrderCart();
-    updateCatalogStatus();
+    guardarCarrito(carritoActualizado);
+    renderizarPedido();
+    actualizarEstadoCatalogo();
   }
 
-  function renderOrderCart() {
-    const body = document.getElementById("cart-items-body");
+  function renderizarPedido() {
+    const lista = document.getElementById("cart-items-list");
     const total = document.getElementById("cart-total");
-    if (!body || !total) {
+    if (!lista || !total) {
       return;
     }
 
-    const cart = getCart();
-    if (!cart.length) {
-      body.innerHTML = '<tr><td colspan="6">Tu carrito esta vacio. Ve al catalogo para anadir cuadros.</td></tr>';
+    const carrito = obtenerCarrito();
+    if (!carrito.length) {
+      lista.innerHTML = '<p class="cart-empty">Tu carrito está vacío. Ve al catálogo para añadir cuadros.</p>';
       total.textContent = "Total: 0 EUR";
       return;
     }
 
-    let totalPrice = 0;
-    body.innerHTML = cart
+    let precioTotal = 0;
+    lista.innerHTML = carrito
       .map(function (item) {
         const subtotal = item.price * item.quantity;
-        totalPrice += subtotal;
+        precioTotal += subtotal;
         return (
-          "<tr>" +
-          "<td>" + item.artist + "</td>" +
-          "<td>" + item.title + "</td>" +
-          "<td>" + item.quantity + "</td>" +
-          "<td>" + formatPrice(item.price) + "</td>" +
-          "<td>" + formatPrice(subtotal) + "</td>" +
-          '<td><button class="remove-item" type="button" data-remove-id="' +
+          '<article class="cart-item">' +
+          '<p><strong>Cuadro:</strong> ' + item.title + "</p>" +
+          '<p><strong>Artista:</strong> ' + item.artist + "</p>" +
+          '<p><strong>Precio:</strong> ' + formatearPrecio(item.price) + "</p>" +
+          '<button class="remove-item" type="button" data-remove-id="' +
           item.id +
-          '">Quitar</button></td>' +
-          "</tr>"
+          '">Quitar</button>' +
+          "</article>"
         );
       })
       .join("");
 
-    total.textContent = "Total: " + formatPrice(totalPrice);
+    total.textContent = "Total: " + formatearPrecio(precioTotal);
 
-    document.querySelectorAll(".remove-item").forEach(function (button) {
-      button.addEventListener("click", function () {
-        removeFromCart(button.dataset.removeId);
+    document.querySelectorAll(".remove-item").forEach(function (boton) {
+      boton.addEventListener("click", function () {
+        quitarDelCarrito(boton.dataset.removeId);
       });
     });
   }
 
-  setupCatalogActions();
-  renderOrderCart();
+  configurarAccionesCatalogo();
+  renderizarPedido();
 })();
